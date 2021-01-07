@@ -3,7 +3,7 @@ package sample.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.sql.DataSource;
+import javax.sql.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class Datasource {
 	public static final Logger logger = LogManager.getLogger(DataSource.class);
 	public static final String DB_NAME = "music.db";
-	public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\freddy.martinez.ASI-REM-0015\\OneDrive - Andromeda Systems Inc\\" + "Personal\\UCO\\Fall 2020\\Software Engineering I\\project\\database-instructions\\DatabaseDemoFx\\" + DB_NAME;
+	public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\freddy.martinez.ASI-REM-0015\\OneDrive - Andromeda Systems Inc\\Personal\\java\\DataBaseDemoFx\\" + DB_NAME;
 	public static final String TABLE_ALBUMS = "albums";
 	public static final String COLUMN_ALBUM_ID = "_id";
 	public static final String COLUMN_ALBUM_NAME = "name";
@@ -129,10 +129,10 @@ public class Datasource {
 
 	public boolean open(){
 		logger.info("open(): start ");
+		System.out.println("open(): start ");
 		try {
 			conn = DriverManager.getConnection(CONNECTION_STRING);
 			querySongInfoView = conn.prepareStatement(QUERY_VIEW_SONG_INFO_PREP);
-
 			insertIntoArtist = conn.prepareStatement(INSERT_ARTIST, Statement.RETURN_GENERATED_KEYS);
 			insertIntoAlbums = conn.prepareStatement(INSERT_ALBUMS, Statement.RETURN_GENERATED_KEYS);
 			insertIntoSongs = conn.prepareStatement(INSERT_SONGS);
@@ -143,6 +143,7 @@ public class Datasource {
 
 			return true;
 		} catch (SQLException e) {
+
 			logger.debug("Couldn't connect to to database: " + e.getMessage());
 			return false;
 		}
@@ -187,7 +188,7 @@ public class Datasource {
 
 	/**
 	 * @param sortOrder
-	 * @return List<Artist>
+	 * @return List<Artist2>
 	 *
 	 */
 	public List<Artist> queryArtists(int sortOrder){
@@ -196,11 +197,11 @@ public class Datasource {
 		if (sortOrder != ORDER_BY_NONE){
 			sb.append(" ORDER BY ");
 			sb.append(COLUMN_ARTISTS_NAME);
-			sb.append(" COLLATE NOCASE");
+			sb.append(" COLLATE NOCASE ");
 			if (sortOrder == ORDER_BY_DESC){
 				sb.append(" DESC ");
 			} else {
-					sb.append(" ASC ");
+				sb.append(" ASC ");
 			}
 		}
 		logger.debug("SQL Statement: " + sb.toString());
@@ -214,6 +215,7 @@ public class Datasource {
 				artists.add(artist);
 			}
 			return artists;
+
 		} catch (SQLException e){
 			System.out.println("Query Fail: " + e.getMessage());
 			return null;
@@ -368,7 +370,7 @@ public class Datasource {
 		queryArtist.setString(1, name);
 		ResultSet results = queryArtist.executeQuery();
 		if (results.next()) {
-			logger.info("Artist already exists. ");
+			logger.info("Artist2 already exists. ");
 			return results.getInt(1);
 		} else {
 			// insert artist

@@ -1,9 +1,9 @@
-module DataBaseDemoFx {
+module DatabaseDemoFx {
 	requires javafx.fxml;
-	requires javafx.controls;
 	requires java.sql;
+	requires javafx.controls;
 	requires org.apache.logging.log4j;
 
-	opens sample	;
-
+	opens sample;
+	opens sample.model;
 }
