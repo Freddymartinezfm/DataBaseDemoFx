@@ -205,10 +205,8 @@ public class Datasource {
 			}
 		}
 		logger.debug("SQL Statement: " + sb.toString());
-		System.out.println("SQL Statement: " + sb.toString());
 		try (Statement statement = conn.createStatement();
 			ResultSet results = statement.executeQuery(sb.toString())){
-
 			List<Artist> artists = new ArrayList<>();
 			while (results.next()) {
 				Artist artist = new Artist();
