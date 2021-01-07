@@ -118,6 +118,9 @@ public class Datasource {
 		// Datasource.getInstance().methodName();
 	}
 
+	public static final String QUERY_ALBUMS_BY_ARTIST_ID = "SELECT * FROM " + TABLE_ALBUMS + " WHERE " + COLUMN_ALBUM_ARTIST + " = ? " +
+			" ORDER BY " + COLUMN_ALBUM_NAME + " COLLATE NOCASE ";
+
 	private Connection conn;
 
 	private PreparedStatement querySongInfoView;
@@ -126,6 +129,7 @@ public class Datasource {
 	private PreparedStatement insertIntoSongs;
 	private PreparedStatement queryArtist;
 	private PreparedStatement queryAlbum;
+	private PreparedStatement queryAlbumByArtistId;
 
 	public boolean open(){
 		logger.info("open(): start ");
@@ -138,6 +142,7 @@ public class Datasource {
 			insertIntoSongs = conn.prepareStatement(INSERT_SONGS);
 			queryArtist = conn.prepareStatement(QUERY_ARTIST);
 			queryAlbum = conn.prepareStatement(QUERY_ALBUM);
+			queryAlbumByArtistId = conn.prepareStatement(QUERY_ALBUMS_BY_ARTIST_ID);
 			// todo query song
 
 

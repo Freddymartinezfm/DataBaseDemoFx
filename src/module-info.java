@@ -1,4 +1,4 @@
-module DatabaseDemoFx {
+module DataBaseDemoFx {
 	requires javafx.fxml;
 	requires java.sql;
 	requires javafx.controls;
