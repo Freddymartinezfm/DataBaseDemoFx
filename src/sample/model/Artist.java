@@ -7,20 +7,30 @@ public class Artist {
 	private SimpleIntegerProperty id;
 	private SimpleStringProperty name;
 
-	public SimpleIntegerProperty getId() {
-		return id;
+	public Artist() {
+		this.id = new SimpleIntegerProperty();
+		this.name = new SimpleStringProperty();
+	}
+
+	public int getId() {
+		return id.get();
 	}
 
 	public void setId(int id) {
-		new SimpleIntegerProperty(id);
+		this.id.set(id);
 	}
 
-	public SimpleStringProperty getName() {
-		return name;
+	public String getName() {
+		return name.get();
 	}
 
 	public void setName(String name) {
-		new SimpleStringProperty(name);
+		this.name.set(name);
 
 	}
+
+//	@Override
+//	public String toString() {
+//		return name.get();
+//	}
 }

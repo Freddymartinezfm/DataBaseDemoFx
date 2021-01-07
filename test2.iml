@@ -7,9 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="JavaFX-11" level="application" />
-    <orderEntry type="library" name="org.apache.logging.log4j:log4j-core:2.14.0" level="application" />
-    <orderEntry type="library" name="org.apache.logging.log4j:log4j-api:2.13.0" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.logging.log4j:log4j-core:2.14.0" level="application" />
     <orderEntry type="library" name="sqlite-jdbc-3.32.3.2" level="project" />
+    <orderEntry type="library" name="JavaFX-11" level="project" />
+    <orderEntry type="library" name="org.apache.logging.log4j:log4j-api:2.13.0" level="application" />
   </component>
 </module>

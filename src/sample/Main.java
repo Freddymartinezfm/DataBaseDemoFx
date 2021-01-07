@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,39 +18,38 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-//        GridPane root = new GridPane();
-//        root.setAlignment(Pos.CENTER);
-//        root.setVgap(10);
-//        root.setHgap(10);
-//
-//        Label greeting = new Label("Welcome to JavaFX!");
-//        greeting.setTextFill(Color.GREEN);
-//        root.getChildren().add(greeting);
-//
-        primaryStage.setTitle("Hello JavaFX!");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Parent root = loader.load();
+        Controller controller = loader.getController();
+        controller.listArtists();
+
+        primaryStage.setTitle("Music Database");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
 
     @Override
     public void init() throws Exception {
+        super.init();
        if (!Datasource.getInstance().open()){
            logger.fatal("Couldn't connect to database");
-           System.out.println("Couldn't connect to database");
+           Platform.exit();
+       } else {
+           // TODO create a pop up confirmation dialog
+            System.out.println("Database open successfully");
        }
 
-       logger.info("Database open successfully");
-       logger.debug("debug");
-       logger.info("info");
-       logger.trace("trace");
-       logger.fatal("fatal");
-        System.out.println("Database open successfully");
+//       logger.info("Database open successfully");
+//       logger.debug("debug");
+//       logger.info("info");
+//       logger.trace("trace");
+//       logger.fatal("fatal");
 
     }
 
     @Override
     public void stop() throws Exception {
+        super.stop();
         Datasource.getInstance().close();
     }
 
