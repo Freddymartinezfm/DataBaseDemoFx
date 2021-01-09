@@ -33,13 +33,14 @@ public class Controller {
 	@FXML
 	public void updateArtist(){
 		// normally would be the selected artist, this is just a hack to bypass getting the input, from a dialog/from user.
-		final Artist artist = (Artist) artistTable.getSelectionModel().getSelectedItem();
-//		final Artist artist = (Artist) artistTable.getItems().get(66);
+//		final Artist artist = (Artist) artistTable.getSelectionModel().getSelectedItem();
+		final Artist artist = (Artist) artistTable.getItems().get(66);
 		System.out.println(artist.getName());
 
 		Task<Boolean> task = new Task<Boolean>() {
 			@Override
 			protected Boolean call() throws Exception {
+				// TODO get newName from user
 				return Datasource.getInstance().updateArtistName(artist.getId(), "AC/DC");
 			}
 		};
