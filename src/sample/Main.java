@@ -38,13 +38,6 @@ public class Main extends Application {
            // TODO create a pop up confirmation dialog
             System.out.println("Database open successfully");
        }
-
-//       logger.info("Database open successfully");
-//       logger.debug("debug");
-//       logger.info("info");
-//       logger.trace("trace");
-//       logger.fatal("fatal");
-
     }
 
     @Override
